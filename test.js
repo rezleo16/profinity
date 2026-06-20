@@ -1,7 +1,7 @@
 const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('process');
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://profinity-sand.vercel.app/api';
 
 async function makeRequest(endpoint, method, bodyData) {
   try {
@@ -10,7 +10,7 @@ async function makeRequest(endpoint, method, bodyData) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyData)
     });
-    
+
     const result = await response.json();
     console.log('\n--- API RESPONSE ---');
     console.log(JSON.stringify(result, null, 2));
@@ -22,22 +22,22 @@ async function makeRequest(endpoint, method, bodyData) {
 
 async function startConsole() {
   const rl = readline.createInterface({ input, output });
-  
+
   while (true) {
     console.log('--- Profanity API Tester ---');
     console.log('1. Check a message for profanity');
     console.log('2. Add a new word/phrase');
     console.log('3. Remove a word/phrase');
     console.log('4. Exit');
-    
+
     const choice = await rl.question('Choose an option (1-4): ');
-    
+
     if (choice === '4') {
       console.log('Goodbye!');
       rl.close();
       break;
     }
-    
+
     switch (choice) {
       case '1': {
         const message = await rl.question('Enter the message to check: ');
