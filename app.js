@@ -114,7 +114,7 @@ app.delete('/api/remove-profanity', async (req, res) => {
   const index = badWordsArray.indexOf(cleanPhrase);
 
   if (index === -1) {
-    return res.status(404).json({ removed: false, message: "Phrase does not exist." });
+    return res.status(401).json({ removed: false, message: "Phrase does not exist." });
   }
 
   try {
